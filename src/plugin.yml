@@ -1,0 +1,10 @@
+name: Gamer
+version: 1.0
+author: Joebaria
+main: xyz.joebaria.Gamer.Gamer
+commands:
+  destroy:
+    description: kill essentially
+    usage: /destroy <player>
+    permission: op
+    permission-message: gamer you can't

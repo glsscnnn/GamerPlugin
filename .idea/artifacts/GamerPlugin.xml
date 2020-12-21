@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GamerPlugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/GamerPlugin</output-path>
+    <root id="archive" name="GamerPlugin.jar">
+      <element id="module-output" name="Gamer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/deps/spigot-api-1.16.4-R0.1-20201121.022704-24.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
