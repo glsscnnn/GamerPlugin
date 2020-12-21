@@ -67,6 +67,11 @@ public class Gamer extends JavaPlugin {
             target.setHealth(0.5);
             return true;
         }
+        if(cmd.getName().equalsIgnoreCase("nick")) {
+            Player target = (Player) sender;
+            target.setDisplayName(args[0]);
+            target.setPlayerListName(args[0]);
+        }
         return false;
     }
 

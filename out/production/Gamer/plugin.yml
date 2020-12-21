@@ -8,3 +8,6 @@ commands:
     usage: /destroy <player>
     permission: op
     permission-message: gamer you can't
+  nick:
+    description: nickname
+    usage: /nick <player>

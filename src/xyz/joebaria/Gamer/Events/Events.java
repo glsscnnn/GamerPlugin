@@ -1,6 +1,7 @@
 package xyz.joebaria.Gamer.Events;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -75,7 +76,20 @@ public class Events implements Listener {
         }
     }
 
-    // get spawn egg method I wrote too long jajaja
+    // Gamer Stick update
+    @EventHandler
+    public void GamerStick(PlayerInteractEvent event) {
+        Player target = event.getPlayer();
+        if(target.getInventory().getItemInMainHand().getType() == Material.STICK && target.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("gamer stick")) {
+            Block block = target.getTargetBlock(null, 5);
+            if(block.getType() == Material.BEDROCK) {
+                block.setType(Material.AIR);
+                ItemStack nothing = new ItemStack(Material.AIR);
+                target.getInventory().setItemInMainHand(nothing);
+            }
+        }
+    }
+
     public Material getSpawnEgg(EntityType entity) {
         Material egg = Material.PIG_SPAWN_EGG;
 
