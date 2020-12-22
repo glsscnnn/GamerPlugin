@@ -7,12 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.joebaria.Gamer.Events.Events;
-import xyz.joebaria.Gamer.Cache.Cache;
 
 public class Gamer extends JavaPlugin {
-
-    // so scuffed
-    public Cache local_cache = new Cache();
 
     @Override
     public void onEnable() {
@@ -71,61 +67,6 @@ public class Gamer extends JavaPlugin {
             target.setDisplayName(args[0]);
             target.setPlayerListName(args[0]);
             return true;
-        }
-        if(cmd.getName().equalsIgnoreCase("trade")) {
-
-            // sender and receiver
-            Player target = Bukkit.getServer().getPlayer(args[0]);
-            Player user = (Player) sender;
-
-            // safety check
-            if (local_cache.Items.containsKey(target.getName())){
-                target.sendMessage(ChatColor.RED + "fucking idiot wait bitch pussy bitch");
-                return false;
-            }
-
-            // try and avoid null pointer exception
-            try {
-                // call it shit code
-                ItemStack target_item = target.getInventory().getItemInMainHand(); // TODO add catch
-                ItemStack user_item = user.getInventory().getItemInMainHand();
-                target.sendMessage("type /confirm to confirm the trade: " + user_item.getType().toString() + " for " + target_item.getType().toString());
-                // cache items and store request
-                local_cache.Items.put(target.getName(), new ItemStack[]{user_item, target_item});
-                local_cache.Request.put(target.getName(), new Player[]{user, target});
-                return true;
-            }
-            catch (NullPointerException e) {
-                target.sendMessage("fuckin bitch");
-                user.sendMessage("fuckin bitch");
-                return false;
-            }
-
-
-        }
-        if(cmd.getName().equalsIgnoreCase("confirm")) {
-            Player target = (Player) sender;
-            if(local_cache.Request.containsKey(target.getName())) {
-                // get items and players from the cache
-                Player[] players = local_cache.Request.get(target.getName());
-                ItemStack[] items = local_cache.Items.get(target.getName());
-
-                // players
-                Player from = players[0];
-                Player to = players[1];
-
-                // items being sent
-                ItemStack from_item = items[0];
-                ItemStack to_item = items[1];
-
-                // swap items
-                to.getInventory().setItemInMainHand(from_item);
-                from.getInventory().setItemInMainHand(to_item);
-
-                return true;
-            }
-            target.sendMessage(ChatColor.RED + "fucking idiot bitch");
-            return false;
         }
         return false;
     }
