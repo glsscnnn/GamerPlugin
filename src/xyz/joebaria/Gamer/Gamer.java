@@ -7,10 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -33,6 +30,7 @@ public class Gamer extends JavaPlugin {
         ItemStack spawner = new ItemStack(Material.SPAWNER);
         NamespacedKey spawnerKey = new NamespacedKey(this, "spawner_pog");
         ShapedRecipe spawnerRecipe = new ShapedRecipe(spawnerKey, spawner);
+
 
         // Recipe Shape
         spawnerRecipe.shape("III", "I*I", "BBB");
@@ -57,6 +55,13 @@ public class Gamer extends JavaPlugin {
 
         // Add Pokeball Recipe
         Bukkit.addRecipe(pokeballRecipe);
+
+        // Zombie Flesh Recipe
+        ItemStack leather = new ItemStack(Material.LEATHER);
+        NamespacedKey leatherKey = new NamespacedKey(this, "zombie_leather");
+        FurnaceRecipe leatherRecipe = new FurnaceRecipe(leatherKey, leather, Material.ROTTEN_FLESH, 0.7f, 24);
+
+        Bukkit.addRecipe(leatherRecipe);
     }
 
     @Override

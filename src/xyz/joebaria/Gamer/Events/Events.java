@@ -91,7 +91,7 @@ public class Events implements Listener {
     // TODO Max trades
     // TODO Trade System
 
-    // Patched Gamer Stick
+    // Patched OG Gamer Stick
     @EventHandler
     public void PatchedDeathStick(PlayerInteractEvent event) {
         Player target = event.getPlayer();
@@ -102,11 +102,8 @@ public class Events implements Listener {
         }
     }
 
-    // TODO Trade System
-
-    // Gamer Stick update
     @EventHandler
-    public void GamerStick(PlayerInteractEvent event) {
+    public void BedRockDestroyer(PlayerInteractEvent event) {
         Player target = event.getPlayer();
         if(target.getInventory().getItemInMainHand().getType() == Material.STICK && target.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("gamer stick")) {
             Block block = target.getTargetBlock(null, 5);
