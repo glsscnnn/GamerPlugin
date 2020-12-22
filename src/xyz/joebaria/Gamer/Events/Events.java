@@ -4,11 +4,13 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -75,6 +77,32 @@ public class Events implements Listener {
             target.getInventory().setItemInMainHand(spawn_egg);
         }
     }
+
+    // Zombie Leather
+    @EventHandler
+    public void ZombieLeather(FurnaceSmeltEvent event) {
+        Material source = event.getSource().getType();
+        if(source == Material.ROTTEN_FLESH) {
+            ItemStack leather = new ItemStack(Material.LEATHER);
+            event.setResult(leather);
+        }
+    }
+
+    // TODO Max trades
+    // TODO Trade System
+
+    // Patched Gamer Stick
+    @EventHandler
+    public void PatchedDeathStick(PlayerInteractEvent event) {
+        Player target = event.getPlayer();
+        if(target.getInventory().getItemInMainHand().getType() == Material.STICK &&
+                target.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("gamer stick") &&
+                target.getInventory().getItemInMainHand().getItemMeta().getEnchants().size() == 4) {
+            target.getWorld().createExplosion(target.getEyeLocation(), 30f);
+        }
+    }
+
+    // TODO Trade System
 
     // Gamer Stick update
     @EventHandler
