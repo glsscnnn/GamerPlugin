@@ -73,26 +73,35 @@ public class Gamer extends JavaPlugin {
             return true;
         }
         if(cmd.getName().equalsIgnoreCase("trade")) {
+
+            // sender and receiver
             Player target = Bukkit.getServer().getPlayer(args[0]);
             Player user = (Player) sender;
 
             // safety check
             if (local_cache.Items.containsKey(target.getName())){
-                user.sendMessage(ChatColor.RED + "fucking idiot wait bitch pussy bitch");
+                target.sendMessage(ChatColor.RED + "fucking idiot wait bitch pussy bitch");
                 return false;
             }
 
-            // get trade
-            ItemStack target_item = target.getInventory().getItemInMainHand(); // TODO add catch
-            ItemStack user_item = user.getInventory().getItemInMainHand();
+            // try and avoid null pointer exception
+            try {
+                // call it shit code
+                ItemStack target_item = target.getInventory().getItemInMainHand(); // TODO add catch
+                ItemStack user_item = user.getInventory().getItemInMainHand();
+                target.sendMessage("type /confirm to confirm the trade: " + user_item.getType().toString() + " for " + target_item.getType().toString());
+                // cache items and store request
+                local_cache.Items.put(target.getName(), new ItemStack[]{user_item, target_item});
+                local_cache.Request.put(target.getName(), new Player[]{user, target});
+                return true;
+            }
+            catch (NullPointerException e) {
+                target.sendMessage("fuckin bitch");
+                user.sendMessage("fuckin bitch");
+                return false;
+            }
 
-            target.sendMessage("type /confirm to confirm the trade: " + user_item.getType().toString() + " for " + target_item.getType().toString());
 
-            // cache items and store request
-            local_cache.Items.put(target.getName(), new ItemStack[]{user_item, target_item});
-            local_cache.Request.put(target.getName(), new Player[]{user, target});
-
-            return true;
         }
         if(cmd.getName().equalsIgnoreCase("confirm")) {
             Player target = (Player) sender;
