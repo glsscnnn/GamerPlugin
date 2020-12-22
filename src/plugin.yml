@@ -10,4 +10,10 @@ commands:
     permission-message: gamer you can't
   nick:
     description: nickname
-    usage: /nick <player>
+    usage: /nick <nickname>
+  trade:
+    description: trade with other players item in main hands
+    useage: /trade <target_player>
+  confirm:
+    description: confirm trades
+    useage: /confirm
