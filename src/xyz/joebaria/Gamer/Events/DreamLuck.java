@@ -62,7 +62,7 @@ public class DreamLuck implements Listener {
         Random rand = new Random();
         int x = rand.nextInt(16);
 
-        ItemStack drop = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemStack drop = new ItemStack(Material.BOOK);
 
         switch (x) {
             case 0:
