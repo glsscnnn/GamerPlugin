@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.joebaria.Gamer.Events.DreamLuck;
 import xyz.joebaria.Gamer.Events.Events;
 
 public class Gamer extends JavaPlugin {
@@ -15,6 +16,7 @@ public class Gamer extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nStarted!\n\n");
         // register the custom events to this plugin
         getServer().getPluginManager().registerEvents(new Events(), this);
+        getServer().getPluginManager().registerEvents(new DreamLuck(), this);
 
         // Spawner
         ItemStack spawner = new ItemStack(Material.SPAWNER);
