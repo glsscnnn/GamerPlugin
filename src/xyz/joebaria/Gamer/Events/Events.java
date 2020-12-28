@@ -2,6 +2,7 @@ package xyz.joebaria.Gamer.Events;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -13,6 +14,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Collection;
 import java.util.Random;
@@ -42,19 +44,6 @@ public class Events implements Listener {
             // squids also drop fish now
             ItemStack stack = new ItemStack(Material.SALMON);
             event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), stack);
-        }
-    }
-
-    // Snowmen are immortal cause christmas
-    @EventHandler
-    public void Snowmen(EntitySpawnEvent event) {
-        if(event.getEntityType() == EntityType.SNOWMAN) {
-            Entity target = event.getEntity();
-            target.setGlowing(true);
-        }
-        if(event.getEntityType() == EntityType.IRON_GOLEM) {
-            Entity target = event.getEntity();
-            target.setGlowing(true);
         }
     }
 
@@ -88,20 +77,28 @@ public class Events implements Listener {
         }
     }
 
-    // TODO Max trades
-    // TODO Trade System
-
-    // Patched OG Gamer Stick
+    // Gamer loot
     @EventHandler
-    public void PatchedDeathStick(PlayerInteractEvent event) {
-        Player target = event.getPlayer();
-        if(target.getInventory().getItemInMainHand().getType() == Material.STICK &&
-                target.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("gamer stick") &&
-                target.getInventory().getItemInMainHand().getItemMeta().getEnchants().size() == 4) {
-            target.getWorld().createExplosion(target.getEyeLocation(), 30f);
+    public void GamerDeathStick(EntityDeathEvent event) {
+        if (event.getEntity().getType() == EntityType.ENDER_DRAGON) {
+            // the gamer stick from the original mod
+            ItemStack GamerStick = new ItemStack(Material.STICK);
+            EnchantmentStorageMeta meta = (EnchantmentStorageMeta) GamerStick.getItemMeta();
+            meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 3000, true);
+            meta.setDisplayName("Gamer Stick");
+
+            GamerStick.setItemMeta(meta);
+
+            Random rand = new Random();
+            int x = rand.nextInt(10);
+
+            if (x == 1) {
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), GamerStick);
+            }
         }
     }
 
+    // Gamer stick use in normal gameplay
     @EventHandler
     public void BedRockDestroyer(PlayerInteractEvent event) {
         Player target = event.getPlayer();

@@ -71,50 +71,50 @@ public class DreamLuck implements Listener {
 
         switch (x) {
             case 0:
-                meta.addStoredEnchant(Enchantment.SWEEPING_EDGE, 3, true);
+                meta.addStoredEnchant(Enchantment.SWEEPING_EDGE, 3, false);
                 break;
             case 1:
                 meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 5, false);
                 drop.setItemMeta(meta);
                 break;
             case 3:
-                meta.addStoredEnchant(Enchantment.MENDING, 1, true);
+                meta.addStoredEnchant(Enchantment.MENDING, 1, false);
                 break;
             case 4:
                 meta.addStoredEnchant(Enchantment.DAMAGE_ARTHROPODS, 12, true);
                 break;
             case 5:
-                meta.addStoredEnchant(Enchantment.DAMAGE_UNDEAD, 5, true);
+                meta.addStoredEnchant(Enchantment.DAMAGE_UNDEAD, 5, false);
                 break;
             case 6:
-                meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+                meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 5, false);
                 break;
             case 7:
-                meta.addStoredEnchant(Enchantment.RIPTIDE, 1, true);
+                meta.addStoredEnchant(Enchantment.RIPTIDE, 1, false);
                 break;
             case 8:
-                meta.addStoredEnchant(Enchantment.THORNS, 5, true);
+                meta.addStoredEnchant(Enchantment.THORNS, 3, false);
                 break;
             case 9:
-                meta.addStoredEnchant(Enchantment.SILK_TOUCH, 1, true);
+                meta.addStoredEnchant(Enchantment.SILK_TOUCH, 1, false);
                 break;
             case 10:
-                meta.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, false);
                 break;
             case 11:
-                meta.addStoredEnchant(Enchantment.PROTECTION_FIRE, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_FIRE, 4, false);
                 break;
             case 12:
-                meta.addStoredEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, false);
                 break;
             case 13:
-                meta.addStoredEnchant(Enchantment.PROTECTION_PROJECTILE, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_PROJECTILE, 4, false);
                 break;
             case 14:
-                meta.addStoredEnchant(Enchantment.DIG_SPEED, 6, true);
+                meta.addStoredEnchant(Enchantment.DIG_SPEED, 5, false);
                 break;
             case 15:
-                meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 6, true);
+                meta.addStoredEnchant(Enchantment.ARROW_FIRE, 1, false);
                 break;
         }
 
