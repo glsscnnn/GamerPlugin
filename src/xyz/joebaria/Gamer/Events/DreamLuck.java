@@ -4,11 +4,13 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -61,55 +63,62 @@ public class DreamLuck implements Listener {
         Random rand = new Random();
         int x = rand.nextInt(16);
 
-        ItemStack drop = new ItemStack(Material.BOOK);
+        ItemStack drop = new ItemStack(Material.ENCHANTED_BOOK);
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) drop.getItemMeta();
+
+        // this is always true
+        assert meta != null;
 
         switch (x) {
             case 0:
-                drop.getItemMeta().addEnchant(Enchantment.SWEEPING_EDGE, 3, false);
+                meta.addStoredEnchant(Enchantment.SWEEPING_EDGE, 3, true);
                 break;
             case 1:
-                drop.getItemMeta().addEnchant(Enchantment.DAMAGE_ALL, 5, false);
+                meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 5, false);
+                drop.setItemMeta(meta);
                 break;
             case 3:
-                drop.getItemMeta().addEnchant(Enchantment.MENDING, 1, true);
+                meta.addStoredEnchant(Enchantment.MENDING, 1, true);
                 break;
             case 4:
-                drop.getItemMeta().addEnchant(Enchantment.DAMAGE_ARTHROPODS, 12, true);
+                meta.addStoredEnchant(Enchantment.DAMAGE_ARTHROPODS, 12, true);
                 break;
             case 5:
-                drop.getItemMeta().addEnchant(Enchantment.DAMAGE_UNDEAD, 5, true);
+                meta.addStoredEnchant(Enchantment.DAMAGE_UNDEAD, 5, true);
                 break;
             case 6:
-                drop.getItemMeta().addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+                meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 5, true);
                 break;
             case 7:
-                drop.getItemMeta().addEnchant(Enchantment.RIPTIDE, 1, true);
+                meta.addStoredEnchant(Enchantment.RIPTIDE, 1, true);
                 break;
             case 8:
-                drop.getItemMeta().addEnchant(Enchantment.THORNS, 5, true);
+                meta.addStoredEnchant(Enchantment.THORNS, 5, true);
                 break;
             case 9:
-                drop.getItemMeta().addEnchant(Enchantment.SILK_TOUCH, 1, true);
+                meta.addStoredEnchant(Enchantment.SILK_TOUCH, 1, true);
                 break;
             case 10:
-                drop.getItemMeta().addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
                 break;
             case 11:
-                drop.getItemMeta().addEnchant(Enchantment.PROTECTION_FIRE, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_FIRE, 4, true);
                 break;
             case 12:
-                drop.getItemMeta().addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, true);
+                break;
             case 13:
-                drop.getItemMeta().addEnchant(Enchantment.PROTECTION_PROJECTILE, 4, true);
+                meta.addStoredEnchant(Enchantment.PROTECTION_PROJECTILE, 4, true);
                 break;
             case 14:
-                drop.getItemMeta().addEnchant(Enchantment.DIG_SPEED, 6, true);
+                meta.addStoredEnchant(Enchantment.DIG_SPEED, 6, true);
                 break;
             case 15:
-                drop.getItemMeta().addEnchant(Enchantment.ARROW_DAMAGE, 6, true);
+                meta.addStoredEnchant(Enchantment.ARROW_DAMAGE, 6, true);
                 break;
         }
 
+        drop.setItemMeta(meta);
         return drop;
     }
 }
